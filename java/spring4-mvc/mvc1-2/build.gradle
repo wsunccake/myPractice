@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+// JDK 8
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+	compile group: 'org.springframework', name: 'spring-test', version: '4.1.6.RELEASE'
+
+	testCompile group: 'junit', name: 'junit', version: '4.4'
+	testCompile "javax.servlet:javax.servlet-api:3.1.0"
+}
+
+
+// Embeded Jetty for testing
+jettyRun{
+	httpPort = 8080
+}
+
+jettyRunWar{
+	httpPort = 8080
+}
