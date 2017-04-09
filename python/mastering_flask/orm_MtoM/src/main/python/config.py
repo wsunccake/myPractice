@@ -17,8 +17,13 @@ class DevConfig(object):
     # SQLALCHEMY_DATABASE_URI = 'oracle+xc_oracle://user:password@ip:port/db_name'
 
     SQLALCHEMY_ECHO = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+
+class TestConfig(object):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.sqlite3'
 
 
 class ProdConfig(object):
     pass
-

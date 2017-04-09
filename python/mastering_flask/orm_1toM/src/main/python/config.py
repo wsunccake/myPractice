@@ -19,6 +19,10 @@ class DevConfig(object):
     SQLALCHEMY_ECHO = True
 
 
+class TestConfig(object):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///test.sqlite3'
+
+
 class ProdConfig(object):
     pass
-
