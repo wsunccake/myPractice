@@ -9,7 +9,7 @@ use_plugin("python.distutils")
 use_plugin('python.pycharm')
 
 
-name = "orm_MtoM"
+name = "model"
 default_task = "publish"
 
 
