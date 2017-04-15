@@ -1,0 +1,12 @@
+exmaple flow:
+
+hello  -> say_hello
+  |
+  v
+ orm   ->  orm_1toM
+  |
+  v
+model
+  |
+  v
+view
