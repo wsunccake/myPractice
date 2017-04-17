@@ -1,6 +1,6 @@
 exmaple flow:
 
-hello  -> say_hello
+hello  -> say_hello -> model_control
   |
   v
  orm   ->  orm_1toM
@@ -10,3 +10,9 @@ model
   |
   v
 view
+  |
+  v
+blueprint
+  |
+  v
+webapp
