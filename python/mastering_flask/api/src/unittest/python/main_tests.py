@@ -1,3 +1,4 @@
+import json
 import unittest
 from main import app, db, User
 from sqlalchemy import or_, not_
@@ -108,6 +109,90 @@ class MainTest(unittest.TestCase):
 
         user = User.query.filter_by(username='Ramesh').first()
         self.assertEqual(user.password, 'test')
+
+        self.db.session.query(User).delete()
+        self.db.session.commit()
+
+    def test_userapi_get(self):
+        uri = '/users'
+        rv = self.app.get(uri, follow_redirects=True)
+        self.assertEqual(rv.data.decode("utf-8"), 'No data')
+        self.assertEqual(rv.status_code, 200)
+
+    def test_userapi_get_id(self):
+        username = 'Ramesh'
+        password = '1234'
+        user = User(username, password)
+        self.db.session.add(user)
+        self.db.session.commit()
+
+        uri = '/users/{}'.format(1)
+        rv = self.app.get(uri, follow_redirects=True)
+        message = 'Hello {}'.format(username)
+        self.assertEqual(rv.data.decode('utf-8'), message)
+        self.assertEqual(rv.status_code, 200)
+
+        self.db.session.query(User).delete()
+        self.db.session.commit()
+
+    def test_userapi_post(self):
+        username = 'Ramesh'
+        password = '1234'
+        uri = '/users/'
+        data = {'username': username, 'password': password}
+        json_data = json.dumps(data)
+        headers = {'content-type': 'application/json'}
+        rv = self.app.post(uri, data=json_data, headers=headers)
+        self.assertEqual(rv.status_code, 200)
+
+        user = User.query.get(1)
+        self.assertEqual(user.username, username)
+        self.assertEqual(user.password, password)
+
+        self.db.session.query(User).delete()
+        self.db.session.commit()
+
+    def test_userapi_put(self):
+        username = 'Ramesh'
+        password = '1234'
+        user = User(username, password)
+        self.db.session.add(user)
+        self.db.session.commit()
+
+        new_username = 'James'
+        new_password = 'abcde'
+        uri = '/users/{}'.format(1)
+        data = {'username': new_username, 'password': new_password}
+        json_data = json.dumps(data)
+        headers = {'content-type': 'application/json'}
+        rv = self.app.put(uri, data=json_data, headers=headers)
+        self.assertEqual(rv.status_code, 200)
+
+        user = User.query.get(1)
+        self.assertEqual(user.username, new_username)
+        self.assertEqual(user.password, new_password)
+
+        self.db.session.query(User).delete()
+        self.db.session.commit()
+
+    def test_userapi_delete(self):
+        username = 'Ramesh'
+        password = '1234'
+        user = User(username, password)
+        self.db.session.add(user)
+        self.db.session.commit()
+
+        user = User.query.get(1)
+        self.assertEqual(user.username, username)
+        self.assertEqual(user.password, password)
+
+        uri = '/users/{}'.format(1)
+        headers = {'content-type': 'application/json'}
+        rv = self.app.delete(uri, headers=headers)
+        self.assertEqual(rv.status_code, 200)
+
+        user = User.query.get(1)
+        self.assertIsNone(user)
 
         self.db.session.query(User).delete()
         self.db.session.commit()
