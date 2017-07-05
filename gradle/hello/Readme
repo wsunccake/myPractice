@@ -1,0 +1,11 @@
+linux:~/hello $ gradlew clean
+linux:~/hello $ gradlew build
+linux:~/hello $ gradlew distTar
+
+linux:~ $ tar xf ~/hello/build/distributions/hello-1.0-SNAPSHOT.tar -C .
+linux:~ $ cd hello-1.0-SNAPSHOT
+
+linux:~/hello-1.0-SNAPSHOT/lib $ java -cp ./groovy-all-2.4.8.jar:./hello-1.0-SNAPSHOT.jar t1
+linux:~/hello-1.0-SNAPSHOT/lib $ java -cp ./groovy-all-2.4.8.jar:./hello-1.0-SNAPSHOT.jar T2
+linux:~/hello-1.0-SNAPSHOT/lib $ java -cp ./hello-1.0-SNAPSHOT.jar T3
+

@@ -1,0 +1,32 @@
+group 'com.mypkg'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "T3"
+
+//apply plugin: 'distribution '
+//
+//distributions {
+//    main {
+//        contents {
+//            into('bin') {
+//                from {
+//                    'src/main/customscripts/start.sh'
+//                }
+//                fileMode 0755
+//            }
+//        }
+//    }
+//}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.8'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
