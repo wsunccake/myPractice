@@ -7,7 +7,10 @@ cli.a('display a')
 cli.b('display b', required: true) // required: false
 cli.c('display c', args: 1, argName:'file')
 cli.d('display d', args: 2, argName:'key=value', valueSeparator:'=')
-
+cli.with {
+    e longOpt: "e", "display e"
+    f longOpt: "f", "display f", args: 1, argName: "f"
+}
 
 def opt = cli.parse(args)
 

@@ -8,15 +8,21 @@ apply plugin: 'application'
 mainClassName = "Hello"
 
 //apply plugin: 'distribution '
-//
 //distributions {
 //    main {
 //        contents {
 //            into('bin') {
-//                from {
-//                    'src/main/customscripts/start.sh'
-//                }
+//                from 'src/main/bin/cmd1'
+//                from 'src/main/bin/cmd2'
 //                fileMode 0755
+//            }
+//            into('etc') {
+//                from 'src/main/resources/my.conf'
+//                fileMode 0400
+//            }
+//            into('doc') {
+//                from 'src/main/resources/Readme.txt'
+//                fileMode 0644
 //            }
 //        }
 //    }
