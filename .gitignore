@@ -1,6 +1,8 @@
 *.iml
 .idea
 *.pyc
+.gradle
+gradlew
 
 __pycache__
 
