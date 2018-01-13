@@ -87,3 +87,25 @@ linux:~ $ curl http://127.0.0.1:8080/crud/1/
 ```
 
 ---
+
+## JSP
+
+`code`
+
+```
+build.gradle
+
+src/main/java/mypkg/jsp/Hello.java
+
+src/main/resources/application.properties
+
+src/main/webapp/WEB-INF/jsp/hello.jsp
+```
+
+`test`
+
+```
+linux:~ $ curl http://127.0.0.1:8080/jsp/hello/
+
+linux:~ $ curl http://127.0.0.1:8080/jsp/hi/
+```
